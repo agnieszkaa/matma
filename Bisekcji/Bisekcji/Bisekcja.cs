@@ -12,23 +12,27 @@ namespace Bisekcji
         private static int choice;
         private static double repeatAmount;
         private static int i;
+        private static int errorNumber = 0;
 
         public static void Execute()
         {
-            Console.Write("\nWybierz wielomian:\n 1:(x-3)(x+5)=0 \n2:(x - 7) * (x - 2) * (x + 6)=0");
+            Console.Write("\nWybierz wielomian:\n1:x*x=0 \n2:(x - 7) * (x - 2) * (x + 6)=0 \n");
             choice = readValue();
-            Console.Write("\nPodaj dół przedziału");
+            Console.Write("\nPodaj dół przedziału ");
             int a = readValue();
-            Console.Write("\nPodaj góre przedziału");
+            Console.Write("\nPodaj góre przedziału ");
             int b = readValue();
-            Console.Write("\nUstaw dokładność");
+            Console.Write("\nUstaw dokładność ");
             string input = Console.ReadLine();
 
             dokladnosc = Convert.ToDouble(input);
             repeatAmount = Math.Log((b - a) / dokladnosc, 2) - 1;
             double pierwiastek = Factorial(a, b);
-            Console.Write("\npierwiastek: {0}", pierwiastek);
-
+            if(errorNumber == 0)
+            {
+                Console.Write("\npierwiastek: {0}", pierwiastek);
+            }
+            errorNumber = 0;
             i = 0;
             Console.Write("\nkoniec");
         }
@@ -59,7 +63,8 @@ namespace Bisekcji
             }
             else
             {
-                Console.Write("\n zadnego przedzialu z roznica");
+                Console.Write("\nnie ma przedzialu po roznych stronach osi OX");
+                errorNumber = 1;
                 return x0;
             }
         }
@@ -69,7 +74,8 @@ namespace Bisekcji
             if (choice == 1)
             {
                 //return (9 * Math.Pow(x, 4)) - (6 * Math.Pow(x, 3)) + (Math.Pow(x, 2));
-                return (x - 3) * (x + 5);
+                //return (x - 3) * (x + 5);
+                return x*x;
             }
             else if (choice == 2)
             {

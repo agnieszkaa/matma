@@ -13,7 +13,7 @@ namespace Bisekcji
         {
             while (true)
             {
-                Console.Write("\nWybierz metode:\n 1: newton \n2: bisekcja");
+                Console.Write("\nWybierz metode:\n1: newton \n2: bisekcja\n");
                 var choiceString = Console.ReadLine();
                 var choice = Convert.ToInt32(choiceString);
                 if(choice == 1)
