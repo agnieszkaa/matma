@@ -8,7 +8,7 @@ namespace Bisekcji
 {
     public class Bisekcja
     {
-        private static double dokladnosc;
+        private static double accuracy;
         private static int choice;
         private static double repeatAmount;
         private static int i;
@@ -25,22 +25,22 @@ namespace Bisekcji
             Console.Write("\nUstaw dokładność ");
             string input = Console.ReadLine();
 
-            dokladnosc = Convert.ToDouble(input);
-            repeatAmount = Math.Log((b - a) / dokladnosc, 2) - 1;
-            double pierwiastek = Factorial(a, b);
+            accuracy = Convert.ToDouble(input);
+            repeatAmount = Math.Log((b - a) / accuracy, 2) - 1;
+            double zero = Factorial(a, b);
             if(exitNumber == 0)
             {
-                Console.Write("\npierwiastek: {0}", pierwiastek);
+                Console.Write("\npierwiastek: {0}", zero);
             }
             else if(exitNumber == 2)
             {
                 Console.Write("\nosiagnieto dokladnosc");
-                Console.Write("\npierwiastek: {0}", pierwiastek);
+                Console.Write("\npierwiastek: {0}", zero);
             }
             else if (exitNumber == 3)
             {
                 Console.Write("\npetla wykonala sie okreslona liczbe razy");
-                Console.Write("\npierwiastek: {0}", pierwiastek);
+                Console.Write("\npierwiastek: {0}", zero);
             }
             exitNumber = 0;
             i = 0;
@@ -50,8 +50,8 @@ namespace Bisekcji
         static double Factorial(double a, double b)
         {
             double x0 = (a + b) / 2;
-            var wbez = Math.Abs(b - a);
-            if (wbez < dokladnosc )
+            var absoluteValue = Math.Abs(b - a);
+            if (absoluteValue < accuracy )
             {
                 exitNumber = 2;
                 return x0;
