@@ -12,7 +12,7 @@ namespace Bisekcji
         private static int choice;
         private static double repeatAmount;
         private static int i;
-        private static int errorNumber = 0;
+        private static int exitNumber = 0;
 
         public static void Execute()
         {
@@ -28,11 +28,21 @@ namespace Bisekcji
             dokladnosc = Convert.ToDouble(input);
             repeatAmount = Math.Log((b - a) / dokladnosc, 2) - 1;
             double pierwiastek = Factorial(a, b);
-            if(errorNumber == 0)
+            if(exitNumber == 0)
             {
                 Console.Write("\npierwiastek: {0}", pierwiastek);
             }
-            errorNumber = 0;
+            else if(exitNumber == 2)
+            {
+                Console.Write("\nosiagnieto dokladnosc");
+                Console.Write("\npierwiastek: {0}", pierwiastek);
+            }
+            else if (exitNumber == 3)
+            {
+                Console.Write("\npetla wykonala sie okreslona liczbe razy");
+                Console.Write("\npierwiastek: {0}", pierwiastek);
+            }
+            exitNumber = 0;
             i = 0;
             Console.Write("\nkoniec");
         }
@@ -41,8 +51,14 @@ namespace Bisekcji
         {
             double x0 = (a + b) / 2;
             var wbez = Math.Abs(b - a);
-            if (wbez < dokladnosc || repeatAmount < i)
+            if (wbez < dokladnosc )
             {
+                exitNumber = 2;
+                return x0;
+            }
+            else if(repeatAmount < i)
+            {
+                exitNumber = 3;
                 return x0;
             }
             i++;
@@ -64,7 +80,7 @@ namespace Bisekcji
             else
             {
                 Console.Write("\nnie ma przedzialu po roznych stronach osi OX");
-                errorNumber = 1;
+                exitNumber = 1;
                 return x0;
             }
         }
